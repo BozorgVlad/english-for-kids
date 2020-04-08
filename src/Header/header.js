@@ -1,4 +1,5 @@
 import Component from '../Components/component';
+import Switcher from '../Switcher/switcher';
 
 export default class Header extends Component {
   constructor(wrapper) {
@@ -11,6 +12,9 @@ export default class Header extends Component {
     this.header.classList.add('header');
     this.wrapper.append(this.header);
     this.renderNav();
+    this.renderTitle();
+    const switcher = new Switcher(this.header);
+    switcher.renderSwitcher();
   }
 
   renderNav() {
@@ -20,5 +24,10 @@ export default class Header extends Component {
     for (let i = 0; i < 3; i += 1) {
       this.renderComponent(document.querySelector('.button-burger'), 'span', `line line-${i}`);
     }
+  }
+
+  renderTitle() {
+    this.renderComponent(this.header, 'h1', 'title');
+    document.querySelector('h1').innerText = 'English';
   }
 }

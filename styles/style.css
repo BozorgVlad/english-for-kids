@@ -1,6 +1,9 @@
 .header {
     background-color: darkorange;
     height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .button-burger-wrapper {
@@ -35,4 +38,8 @@
 
 .line-2 {
     top: 60px
+}
+
+.ch {
+    width: 100%;
 }
