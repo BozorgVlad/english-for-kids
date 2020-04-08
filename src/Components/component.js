@@ -1,11 +1,13 @@
 export default class Component {
-  constructor(parentNode) {
-		this.parendNode = parentNode;
-		
+  constructor() {
+    this.body = document.querySelector('body');
   }
 
-		renderComponent() {
-			
-		}
-
+  renderComponent(parentNode, el, ...classes) {
+    if (this.body) {
+      const element = document.createElement(el);
+      element.className = classes;
+      parentNode.append(element);
+    }
+  }
 }
