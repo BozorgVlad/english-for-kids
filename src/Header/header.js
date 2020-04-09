@@ -39,6 +39,11 @@ export default class Header extends Component {
   renderMenu() {
     this.renderComponent(document.querySelector('.navigation'), 'ul', 'menu');
     for (let i = 0; i < this.categories; i += 1) {
+      if (i === 0) {
+        this.renderComponent(document.querySelector('.menu'), 'a', 'menu-link menu-link-main');
+        document.querySelector('.menu-link-main').setAttribute('href', '#');
+        document.querySelector('.menu-link-main').innerText = 'Main page';
+      }
       this.renderComponent(document.querySelector('.menu'), 'a', `menu-link link${i}`);
       document.querySelector(`.link${i}`).innerText = `${this.data[0][i]}`;
       document.querySelector(`.link${i}`).setAttribute('href', `#cards${i}`);
