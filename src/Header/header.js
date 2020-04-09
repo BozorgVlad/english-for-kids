@@ -19,6 +19,7 @@ export default class Header extends Component {
     this.renderTitle();
     const switcher = new Switcher(this.header);
     switcher.renderSwitcher();
+    this.bindEvents();
   }
 
   renderNav() {
@@ -41,6 +42,45 @@ export default class Header extends Component {
       this.renderComponent(document.querySelector('.menu'), 'a', `menu-link link${i}`);
       document.querySelector(`.link${i}`).innerText = `${this.data[0][i]}`;
       document.querySelector(`.link${i}`).setAttribute('href', `#cards${i}`);
+    }
+  }
+
+  bindEvents() {
+    this.wrapper.addEventListener('click', (e) => this.addMenuBurger(e));
+  }
+
+  addMenuBurger(e) {
+    const button = document.querySelector('.button-burger');
+    const menu = document.querySelector('.menu');
+    const line1 = document.querySelector('.line-0');
+    const line2 = document.querySelector('.line-1');
+    const line3 = document.querySelector('.line-2');
+
+    if (e.target === button && this.header) {
+      button.classList.toggle('button--active');
+      line1.classList.toggle('line-0--active');
+      line2.classList.toggle('hidden');
+      menu.classList.toggle('menu--active');
+      line3.classList.toggle('line-2--active');
+    }
+    if (e.target.classList.contains('menu-link') || e.target !== button || e.target.classList.contains('wrapper')) {
+      this.closeMenu();
+    }
+  }
+
+  closeMenu() {
+    const button = document.querySelector('.button-burger');
+    const menu = document.querySelector('.menu');
+    const line1 = document.querySelector('.line-0');
+    const line2 = document.querySelector('.line-1');
+    const line3 = document.querySelector('.line-2');
+
+    if (this.header) {
+      button.classList.remove('button--active');
+      line1.classList.remove('line-0--active');
+      line2.classList.remove('hidden');
+      menu.classList.remove('menu--active');
+      line3.classList.remove('line-2--active');
     }
   }
 }
