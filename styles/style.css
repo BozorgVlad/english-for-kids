@@ -7,8 +7,9 @@
 }
 
 .button-burger-wrapper {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
+    
 }
 
 .button-burger {
@@ -22,6 +23,7 @@
     justify-content: space-between;
     position: relative;
     padding: 0;
+    cursor: pointer;
 }
 
 .line {
@@ -42,4 +44,14 @@
 
 .ch {
     width: 100%;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+
+.menu-link {
+    margin-bottom: 10px;
 }

@@ -1,17 +1,21 @@
 import Component from '../Components/component';
 import Switcher from '../Switcher/switcher';
+import cards from '../../data/cards';
 
 export default class Header extends Component {
-  constructor(wrapper) {
+  constructor(wrapper, categories) {
     super();
     this.wrapper = wrapper;
     this.header = document.createElement('header');
+    this.categories = categories;
+    this.data = cards;
   }
 
   renderHeader() {
     this.header.classList.add('header');
     this.wrapper.append(this.header);
     this.renderNav();
+    this.renderMenu();
     this.renderTitle();
     const switcher = new Switcher(this.header);
     switcher.renderSwitcher();
@@ -29,5 +33,14 @@ export default class Header extends Component {
   renderTitle() {
     this.renderComponent(this.header, 'h1', 'title');
     document.querySelector('h1').innerText = 'English';
+  }
+
+  renderMenu() {
+    this.renderComponent(document.querySelector('.navigation'), 'ul', 'menu');
+    for (let i = 0; i < this.categories; i += 1) {
+      this.renderComponent(document.querySelector('.menu'), 'a', `menu-link link${i}`);
+      document.querySelector(`.link${i}`).innerText = `${this.data[0][i]}`;
+      document.querySelector(`.link${i}`).setAttribute('href', `#cards${i}`);
+    }
   }
 }
