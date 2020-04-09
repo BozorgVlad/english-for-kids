@@ -1,4 +1,5 @@
 import Header from '../Header/header';
+import Main from '../Main/mainblock';
 
 class App {
   constructor() {
@@ -10,6 +11,8 @@ class App {
     document.body.append(this.wrapper);
     const header = new Header(this.wrapper, 6);
     header.renderHeader();
+    const main = new Main(this.wrapper);
+    main.renderMain();
   }
 }
 

@@ -68,7 +68,12 @@
 }
 
 .menu-link {
-    margin-bottom: 10px;
+    margin-bottom: 10%;
+    text-decoration: none;
+}
+
+.menu-link:hover {
+    background-color: crimson;
 }
 
 .line-0--active {
