@@ -29,15 +29,15 @@ export default class Main extends Component {
 
   addClickCardHandler(e) {
     if (this.wrapper) {
-      if (e.target.closest('.card')) {
-        const href = e.target.closest('.card').getAttribute('href');
+      if (e.target.closest('.card-category')) {
+        const href = e.target.closest('.card-category').getAttribute('href');
         if (href) {
           const num = parseInt(href.match(/\d+/), 10);
           if (document.querySelector('.cards-wrapper')) {
             document.querySelector('.cards-wrapper').remove();
             this.renderComponent(this.main, 'div', 'cards-wrapper');
             const cards = new Card(document.querySelector('.cards-wrapper'));
-            cards.renderFrontCard(num);
+            cards.renderSetOfCards(num);
           }
         }
       }

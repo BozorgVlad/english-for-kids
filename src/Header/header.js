@@ -47,7 +47,6 @@ export default class Header extends Component {
       this.renderComponent(document.querySelector('.menu'), 'a', `menu-link link${i}`);
       document.querySelector(`.link${i}`).innerText = `${this.data[0][i]}`;
       document.querySelector(`.link${i}`).setAttribute('href', `#cards${i}`);
-      console.log(this.data[i]);
     }
   }
 

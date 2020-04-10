@@ -10,4 +10,11 @@ export default class Component {
       parentNode.append(element);
     }
   }
+
+  static createNode(node, elem, ...classes) {
+    let domNode = node;
+    domNode = document.createElement(elem);
+    domNode.className = classes;
+    return domNode;
+  }
 }
