@@ -25,6 +25,15 @@ export default class Main extends Component {
 
   bindEvents() {
     this.wrapper.addEventListener('click', (e) => this.addClickCardHandler(e));
+    this.wrapper.addEventListener('click', (e) => Main.addPlayAudioOnClick(e));
+  }
+
+  static addPlayAudioOnClick(e) {
+    if (e.target.closest('.card')) {
+      const audio = new Audio(e.target.closest('.card').getAttribute('data-audio'));
+      audio.play();
+      console.log(audio);
+    }
   }
 
   addClickCardHandler(e) {

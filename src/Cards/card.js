@@ -11,7 +11,6 @@ export default class Card extends Component {
     this.frontCard = '';
     this.backCard = '';
     this.title = '';
-    this.image = '';
     this.button = '';
   }
 
@@ -42,6 +41,7 @@ export default class Card extends Component {
     this.renderBackCard(href, i);
     this.renderFrontCardTitle(href, i);
     this.renderBackCardTitle(href, i);
+    this.setAudioSrc(href, i);
     this.renderButton();
   }
 
@@ -54,6 +54,10 @@ export default class Card extends Component {
     this.title = Component.createNode(this.title, 'h3', 'card-title');
     this.title.innerText = this.data[href + 1][i].word;
     this.frontCard.append(this.title);
+  }
+
+  setAudioSrc(href, i) {
+    this.card.setAttribute('data-audio', `${this.data[href + 1][i].audioSrc}`);
   }
 
   renderBackCardTitle(href, i) {
