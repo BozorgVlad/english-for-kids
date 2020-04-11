@@ -1,6 +1,7 @@
 import Component from '../Components/component';
 import Switcher from '../Switcher/switcher';
 import cards from '../../data/cards';
+import Card from '../Cards/card';
 
 export default class Header extends Component {
   constructor(wrapper, categories) {
@@ -41,7 +42,7 @@ export default class Header extends Component {
     for (let i = 0; i < this.categories; i += 1) {
       if (i === 0) {
         this.renderComponent(document.querySelector('.menu'), 'a', 'menu-link menu-link-main');
-        document.querySelector('.menu-link-main').setAttribute('href', '#');
+        document.querySelector('.menu-link-main').setAttribute('href', '#main');
         document.querySelector('.menu-link-main').innerText = 'Main page';
       }
       this.renderComponent(document.querySelector('.menu'), 'a', `menu-link link${i}`);
@@ -52,6 +53,33 @@ export default class Header extends Component {
 
   bindEvents() {
     this.wrapper.addEventListener('click', (e) => this.addMenuBurger(e));
+    document.querySelector('.menu').addEventListener('click', (e) => this.addClickLinkHandler(e));
+  }
+
+  addClickLinkHandler(e) {
+    if (this.header) {
+      if (e.target.tagName === 'A') {
+        const href = e.target.getAttribute('href');
+        if (href !== '#main') {
+          const num = parseInt(href.match(/\d+/), 10);
+          if (document.querySelector('.cards-wrapper')) {
+            document.querySelector('.cards-wrapper').remove();
+            this.renderComponent(document.querySelector('.main'), 'div', 'cards-wrapper');
+            const card = new Card(document.querySelector('.cards-wrapper'));
+            card.renderSetOfCards(num);
+          }
+        }
+        if (href === '#main') {
+          if (document.querySelectorAll('.card')) {
+            document.querySelectorAll('.card').forEach((el) => {
+              el.remove();
+            });
+            const card = new Card(document.querySelector('.cards-wrapper'));
+            card.renderCategoryCard();
+          }
+        }
+      }
+    }
   }
 
   addMenuBurger(e) {

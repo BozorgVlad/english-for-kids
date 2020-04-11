@@ -1,11 +1,13 @@
 import Component from '../Components/component';
 import Card from '../Cards/card';
+import MODE from '../constants';
 
 export default class Main extends Component {
   constructor(wrapper) {
     super();
     this.main = document.createElement('main');
     this.wrapper = wrapper;
+    this.button = '';
   }
 
   renderMain() {
@@ -19,8 +21,21 @@ export default class Main extends Component {
   }
 
   renderStartButton() {
-    this.renderComponent(this.main, 'button', 'button-start hidden');
-    document.querySelector('.button-start').innerText = 'Start Game';
+    this.button = Component.createNode(this.button, 'button', 'button-start hidden');
+    this.main.append(this.button);
+  }
+
+  update(state) {
+    if (this.wrapper) {
+      const mode = state;
+      if (mode === MODE.play) {
+        document.querySelector('.button-start').classList.remove('hidden');
+      }
+      if (mode === MODE.train) {
+        document.querySelector('.button-start').classList.add('hidden');
+        console.log(2);
+      }
+    }
   }
 
   bindEvents() {
@@ -32,7 +47,6 @@ export default class Main extends Component {
     if (e.target.closest('.card')) {
       const audio = new Audio(e.target.closest('.card').getAttribute('data-audio'));
       audio.play();
-      console.log(audio);
     }
   }
 
